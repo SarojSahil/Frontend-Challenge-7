@@ -3,11 +3,14 @@ import { RxCross1 } from "react-icons/rx";
 const Modal = (props) => {
 
   return (
-    <section className="bg-transparent flex justify-center items-center fixed inset-0 z-40">
-      <div className="bg-gray-900 rounded-xl max-w-3xl p-4 mx-4 text-gray-100 animate-grow">
+    <section
+    onClick={() => props.closeModal()}
+      className="bg-transparent flex justify-center items-center fixed inset-0 z-40">
+      <div
+      onClick={e => e.stopPropagation()}
+        className="bg-gray-900 rounded-xl max-w-3xl p-4 mx-4 text-gray-100 animate-grow">
         <div className="flex justify-end mb-4">
-          <button 
-          onClick={() => props.toggleModal(false)}>
+          <button onClick={() => props.closeModal()}>
             <RxCross1 className="w-5 h-5" />
           </button>
         </div>
@@ -22,8 +25,8 @@ const Modal = (props) => {
           </div>
           <div className="flex flex-col sm:flex-row gap-y-2 justify-between mb-4">
             <button
+            onClick={() => props.closeModal()}
               type="button"
-              onClick={() => props.toggleModal(false)}
               className="min-w-[110px] border border-bluish-purple-500 hover:bg-bluish-purple-700 rounded p-2 text-xs"
             >
               Cancel
@@ -86,7 +89,7 @@ const ratingElements = [
 const RatingButtons = () => {
   return (
     ratingElements.map(elem =>
-      <label htmlFor={elem.id}>
+      <label key={elem.id} htmlFor={elem.id}>
         <input
           type="radio"
           name="rating"

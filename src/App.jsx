@@ -15,7 +15,7 @@ function App() {
           </button>
       </main>
       {
-        open && <Modal toggleModal={setOpen} />
+        open && <Modal closeModal={() => setOpen(false)} />
       }
     </>
   );
